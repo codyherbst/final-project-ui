@@ -37,7 +37,7 @@ export default class UserList extends Component {
                     </thead>
                     <tbody>
                         {this.state.userList.map(item => (
-                            <TableRow id={item.id} name={item.name} email={item.email} role={item.role} />
+                            <TableRow apitoken={this.props.apitoken} id={item.id} name={item.name} email={item.email} role={item.role} />
                         ))}
                     </tbody>
                 </Table>

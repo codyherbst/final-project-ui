@@ -43,7 +43,7 @@ export default class LoginPage extends Component {
                 <Col xs='4'>
                 </Col>
                 <Col xs='4' className='align-middle'>
-                    <Form>
+                    <Form className='mb-2'>
                         <FormGroup>
                             <Label for="exampleEmail" hidden>Email</Label>
                             <Input type="email" name="email" id="exampleEmail" placeholder="Email" onChange={this.handleInputChange} />

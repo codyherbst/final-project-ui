@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react'
-import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 import {
     BrowserRouter as Router,
     Switch,
@@ -40,27 +40,32 @@ export default class RegisterPage extends Component {
 
     render() {
         return (
-            <div>
-                <Form inline >
-                    <FormGroup>
-                        <Label for="exampleName" hidden>Name</Label>
-                        <Input type="name" name="name" id="exampleName" placeholder="Name" onChange={this.handleInputChange} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="exampleEmail" hidden>Email</Label>
-                        <Input type="email" name="email" id="exampleEmail" placeholder="Email" onChange={this.handleInputChange} />
-                    </FormGroup>
-                    {' '}
-                    <FormGroup>
-                        <Label for="examplePassword" hidden>Password</Label>
-                        <Input type="password" name="password" id="examplePassword" placeholder="Password" onChange={this.handleInputChange} />
-                    </FormGroup>
-                    {' '}
-                    <Link to='/'>
-                        <Button onClick={() => this.register(this.state.name, this.state.email, this.state.password)}>Submit</Button>
-                    </Link>
-                </Form>
-            </div>
+            <Row>
+                <Col xs='4'></Col>
+                <Col xs='4'>
+                    <Form className='mb-2'>
+                        <FormGroup>
+                            <Label for="exampleName" hidden>Name</Label>
+                            <Input type="name" name="name" id="exampleName" placeholder="Name" onChange={this.handleInputChange} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="exampleEmail" hidden>Email</Label>
+                            <Input type="email" name="email" id="exampleEmail" placeholder="Email" onChange={this.handleInputChange} />
+                        </FormGroup>
+                        {' '}
+                        <FormGroup>
+                            <Label for="examplePassword" hidden>Password</Label>
+                            <Input type="password" name="password" id="examplePassword" placeholder="Password" onChange={this.handleInputChange} />
+                        </FormGroup>
+                        {' '}
+                        <Link to='/'>
+                            <Button onClick={() => this.register(this.state.name, this.state.email, this.state.password)}>Submit</Button>
+                        </Link>
+                    </Form>
+                    <Link to='/'>Already have an account? Click here!</Link>
+                </Col>
+                <Col xs='4'></Col>
+            </Row>
         )
     }
 }

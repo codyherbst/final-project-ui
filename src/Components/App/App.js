@@ -6,6 +6,7 @@ import RegisterPage from '../RegisterPage';
 import Navbar from '../NavBar';
 import Home from '../Home';
 import UserList from '../UserList';
+import MachineOverview from '../MachineOverview';
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,6 +30,16 @@ class App extends Component {
     this.logIn = this.logIn.bind(this)
   }
 
+  componentDidMount() {
+    if (localStorage.getItem('userDetails')) {
+      let userDetails = JSON.parse(localStorage.getItem('userDetails'))
+      this.setState({
+        apitoken: userDetails.apitoken,
+        isLoggedIn: userDetails.isLoggedIn
+      })
+    }
+  }
+
   logIn(email, password) {
     const data = {
       email: email,
@@ -42,6 +53,7 @@ class App extends Component {
             apitoken: response.data.token,
             isLoggedIn: true,
           })
+          localStorage.setItem('userDetails', JSON.stringify({apitoken: response.data.token, isLoggedIn: true}))
         } else {
           return (alert('Incorrect email or password'))
         }
@@ -86,6 +98,7 @@ class App extends Component {
       apitoken: '',
       isLoggedIn: false,
     });
+    localStorage.clear()
   }
 
   render() {
@@ -109,6 +122,9 @@ class App extends Component {
               <Router>
                 <Navbar logOut={this.logOut.bind(this)} />
                 <Switch>
+                  <Route path='/machines'>
+                    <MachineOverview apitoken={this.state.apitoken}/>
+                  </Route>
                   <Route path='/users'>
                     <UserList apitoken={this.state.apitoken}/>
                   </Route>

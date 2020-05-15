@@ -16,9 +16,10 @@ export default class NavBar extends Component {
     render() {
         return (
             <React.Fragment>
-                <Link to='/'>Home</Link>
-                <Link to='/users'>Users</Link>
-                <Link to='/' onClick={this.props.logOut}>Log Out</Link>
+                <Link to='/' className='px-2'>Home</Link>
+                <Link to='/users' className='px-2'>Users</Link>
+                <Link to='/machines' className='px-2'>Machines</Link>
+                <Link to='/' onClick={this.props.logOut} className='px-2'>Log Out</Link>
             </React.Fragment>
         )
     }
