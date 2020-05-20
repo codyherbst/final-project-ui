@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 export default class MachineOverview extends Component {
 
@@ -27,6 +28,9 @@ export default class MachineOverview extends Component {
     render() {
         return (
             <div className='container'>
+                <Link to='/newJob'>
+                    <Button>New Job</Button>
+                </Link>
                 {
                     this.state.jobList.map(item => (
                         <Row className='border'>
@@ -37,12 +41,12 @@ export default class MachineOverview extends Component {
                             </Col>
                             <Col xs='3'>
                                 <div className='text-center'>
-                                    Material: {item.material_type_id}
+                                    Material: {item.material_type.name}
                                 </div>
                             </Col>
                             <Col xs='3'>
                                 <div className='text-center'>
-                                    Machine: {item.machine_id}
+                                    Machine: {item.machine.name}
                                 </div>
                             </Col>
                             <Col xs='3'>

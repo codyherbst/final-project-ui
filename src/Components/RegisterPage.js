@@ -7,11 +7,12 @@ import {
     Link,
     Redirect,
     useHistory,
-    useLocation
+    useLocation,
+    withRouter
 } from "react-router-dom";
 
 
-export default class RegisterPage extends Component {
+class RegisterPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -20,7 +21,10 @@ export default class RegisterPage extends Component {
             password: ''
         }
         this.handleInputChange = this.handleInputChange.bind(this)
+
     }
+
+    
 
     handleInputChange(event) {
         event.preventDefault();
@@ -34,8 +38,11 @@ export default class RegisterPage extends Component {
         })
     }
 
-    register(name, email, password) {
-        this.props.register(name, email, password)
+    register(e) {
+        // let history = useHistory()
+        e.preventDefault();
+        this.props.register(this.state.name, this.state.email, this.state.password)
+        this.props.history.push('/')
     }
 
     render() {
@@ -43,7 +50,7 @@ export default class RegisterPage extends Component {
             <Row>
                 <Col xs='4'></Col>
                 <Col xs='4'>
-                    <Form className='mb-2'>
+                    <Form className='mb-2' onSubmit={this.register.bind(this)}>
                         <FormGroup>
                             <Label for="exampleName" hidden>Name</Label>
                             <Input type="name" name="name" id="exampleName" placeholder="Name" onChange={this.handleInputChange} />
@@ -58,9 +65,7 @@ export default class RegisterPage extends Component {
                             <Input type="password" name="password" id="examplePassword" placeholder="Password" onChange={this.handleInputChange} />
                         </FormGroup>
                         {' '}
-                        <Link to='/'>
-                            <Button onClick={() => this.register(this.state.name, this.state.email, this.state.password)}>Submit</Button>
-                        </Link>
+                        <Button tpye='submit'>Submit</Button>
                     </Form>
                     <Link to='/'>Already have an account? Click here!</Link>
                 </Col>
@@ -69,3 +74,5 @@ export default class RegisterPage extends Component {
         )
     }
 }
+
+export default withRouter(RegisterPage);

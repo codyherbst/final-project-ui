@@ -8,6 +8,7 @@ import Home from '../Home';
 import UserList from '../UserList';
 import MachineOverview from '../MachineOverview';
 import JobsList from '../JobsList';
+import NewJob from '../NewJob';
 import {
   BrowserRouter as Router,
   Switch,
@@ -123,8 +124,8 @@ class App extends Component {
               <Router>
                 <Navbar logOut={this.logOut.bind(this)} />
                 <Switch>
-                  <Route path='/machines'>
-                    <MachineOverview apitoken={this.state.apitoken}/>
+                  <Route path='/newJob'>
+                    <NewJob apitoken={this.state.apitoken}/>
                   </Route>
                   <Route path='/users'>
                     <UserList apitoken={this.state.apitoken}/>
@@ -132,8 +133,8 @@ class App extends Component {
                   <Route path='/jobs'>
                     <JobsList apitoken={this.state.apitoken}/>
                   </Route>
-                  <Route exact path='/'>
-                    <Home />
+                  <Route path='/'>
+                    <MachineOverview apitoken={this.state.apitoken}/>
                   </Route>
                 </Switch>
               </Router>

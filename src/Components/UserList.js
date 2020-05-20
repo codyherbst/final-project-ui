@@ -25,7 +25,7 @@ export default class UserList extends Component {
 
     render() {
         return (
-            <div>
+            <div className='container'>
                 <Table>
                     <thead>
                         <tr>
