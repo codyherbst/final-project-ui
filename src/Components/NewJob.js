@@ -74,7 +74,7 @@ export default class NewJob extends Component {
                         </Input>
                     </FormGroup>
                     <FormGroup>
-                        <Label for='materialSelect'>Select Machine</Label>
+                        <Label for='materialSelect'>Select Material</Label>
                         <Input type='select' name='materialSelect' id='materialSelect' onChange={this.handleChange.bind(this)}>
                             {
                                 this.state.materialList.map(item => (

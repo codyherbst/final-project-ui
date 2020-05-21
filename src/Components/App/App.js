@@ -19,6 +19,7 @@ import {
   useLocation
 } from "react-router-dom";
 import { Row } from 'reactstrap';
+import Job from '../Job';
 
 
 class App extends Component {
@@ -27,6 +28,8 @@ class App extends Component {
     super(props);
     this.state = {
       apitoken: '',
+      role: '',
+      name: '',
       isLoggedIn: false,
     }
     this.logIn = this.logIn.bind(this)
@@ -37,6 +40,8 @@ class App extends Component {
       let userDetails = JSON.parse(localStorage.getItem('userDetails'))
       this.setState({
         apitoken: userDetails.apitoken,
+        role: userDetails.role,
+        name: userDetails.name,
         isLoggedIn: userDetails.isLoggedIn
       })
     }
@@ -53,9 +58,11 @@ class App extends Component {
         if (response.data.loggedIn) {
           this.setState({
             apitoken: response.data.token,
+            role: response.data.user.role,
+            name: response.data.user.name,
             isLoggedIn: true,
           })
-          localStorage.setItem('userDetails', JSON.stringify({apitoken: response.data.token, isLoggedIn: true}))
+          localStorage.setItem('userDetails', JSON.stringify({apitoken: response.data.token, role: response.data.user.role, name: response.data.user.name, isLoggedIn: true}))
         } else {
           return (alert('Incorrect email or password'))
         }
@@ -98,6 +105,8 @@ class App extends Component {
   logOut() {
     this.setState({
       apitoken: '',
+      role: '',
+      name: '',
       isLoggedIn: false,
     });
     localStorage.clear()
@@ -132,6 +141,9 @@ class App extends Component {
                   </Route>
                   <Route path='/jobs'>
                     <JobsList apitoken={this.state.apitoken}/>
+                  </Route>
+                  <Route path='/job'>
+                    <Job apitoken={this.state.apitoken}/>
                   </Route>
                   <Route path='/'>
                     <MachineOverview apitoken={this.state.apitoken}/>
