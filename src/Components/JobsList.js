@@ -79,22 +79,29 @@ class JobsList extends Component {
     render() {
         return (
             <div className='container'>
-                <Link to='/newJob'>
-                    <Button>New Job</Button>
-                </Link>
-                <Button onClick={this.updateJobOrder.bind(this)}>Update Job Order</Button>
-                <Form>
-                    <FormGroup>
-                        <Label for='machineSelect'>Select Machine</Label>
-                        <Input type='select' defaultValue='Select' name='machineSelect' id='machineSelect' onChange={this.handleChange.bind(this)}>
-                            {
-                                this.state.machineList.map(item => (
-                                    <option value={item.id}>{item.name}</option>
-                                ))
-                            }
-                        </Input>
-                    </FormGroup>
-                </Form>
+                <Row>
+                    <Col xs='4'>
+                        <Form>
+                            <FormGroup>
+                                <Label for='machineSelect'>Select Machine</Label>
+                                <Input type='select' defaultValue='Select' name='machineSelect' id='machineSelect' onChange={this.handleChange.bind(this)}>
+                                    {
+                                        this.state.machineList.map(item => (
+                                            <option value={item.id}>{item.name}</option>
+                                        ))
+                                    }
+                                </Input>
+                            </FormGroup>
+                        </Form>
+                    </Col>
+                    <Col xs='5'></Col>
+                    <Col xs='3' className='mt-4 pt-2'>
+                        <Link to='/newJob' className='mr-2'>
+                            <Button>New Job</Button>
+                        </Link>
+                        <Button onClick={this.updateJobOrder.bind(this)}>Update Job Order</Button>
+                    </Col>
+                </Row>
                 <Reorder reorderId='jobList' onReorder={this.onReorder.bind(this)} holdTime={100}>
                     {
                         this.state.jobList.map(item => (

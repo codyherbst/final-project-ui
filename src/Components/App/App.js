@@ -30,6 +30,7 @@ class App extends Component {
       apitoken: '',
       role: '',
       name: '',
+      id: null,
       isLoggedIn: false,
     }
     this.logIn = this.logIn.bind(this)
@@ -42,6 +43,7 @@ class App extends Component {
         apitoken: userDetails.apitoken,
         role: userDetails.role,
         name: userDetails.name,
+        id: userDetails.id,
         isLoggedIn: userDetails.isLoggedIn
       })
     }
@@ -60,9 +62,10 @@ class App extends Component {
             apitoken: response.data.token,
             role: response.data.user.role,
             name: response.data.user.name,
+            id: response.data.user.id,
             isLoggedIn: true,
           })
-          localStorage.setItem('userDetails', JSON.stringify({apitoken: response.data.token, role: response.data.user.role, name: response.data.user.name, isLoggedIn: true}))
+          localStorage.setItem('userDetails', JSON.stringify({apitoken: response.data.token, role: response.data.user.role, name: response.data.user.name, id:response.data.user.id, isLoggedIn: true}))
         } else {
           return (alert('Incorrect email or password'))
         }
@@ -107,6 +110,7 @@ class App extends Component {
       apitoken: '',
       role: '',
       name: '',
+      id: null,
       isLoggedIn: false,
     });
     localStorage.clear()
@@ -143,7 +147,7 @@ class App extends Component {
                     <JobsList apitoken={this.state.apitoken}/>
                   </Route>
                   <Route path='/job'>
-                    <Job apitoken={this.state.apitoken}/>
+                    <Job apitoken={this.state.apitoken} userID={this.state.id} userName={this.state.name}/>
                   </Route>
                   <Route path='/'>
                     <MachineOverview apitoken={this.state.apitoken}/>
